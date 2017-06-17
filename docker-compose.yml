@@ -1,0 +1,63 @@
+version: "3"
+ 
+services:
+    jsapp:
+      container_name: jsapp
+      image: sachinio/jsapp
+      build: 
+        context: ./js-app
+        dockerfile: jsapp.dockerfile
+      ports:
+        - "80:80"
+      networks:
+        - app-network
+      volumes:
+        - ./js-app/app/:/var/www/public/
+    
+    node1:
+      container_name: nodeapp1
+      image: sachinio/nodeapp
+      build: 
+        context: ./node-app
+        dockerfile: node.dockerfile
+      ports:
+        - "3000"
+      networks:
+        - app-network
+
+    node2:
+      container_name: nodeapp2
+      image: sachinio/nodeapp
+      build: 
+        context: ./node-app
+        dockerfile: node.dockerfile
+      ports:
+        - "3000"
+      networks:
+        - app-network
+
+    node3:
+      container_name: nodeapp3
+      image: sachinio/nodeapp
+      build: 
+        context: ./node-app
+        dockerfile: node.dockerfile
+      ports:
+        - "3000"
+      networks:
+        - app-network
+
+    redis:
+      container_name: redis
+      image: sachinio/redis
+      build: 
+        context: ./redis
+        dockerfile: redis.dockerfile
+      ports:
+        - "6379"
+      networks:
+        - app-network
+        
+networks:
+    app-network:
+      driver: bridge
