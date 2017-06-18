@@ -7,7 +7,7 @@ A simple example of how to spin up nginx + node + redis in docker. It also shows
 Enlist and run the following docker commands :-
 
 ```linux
-docker-compose build && docker-compose up -d
+docker-compose up -d
 ```
 
 This will build and run the containers in the background
